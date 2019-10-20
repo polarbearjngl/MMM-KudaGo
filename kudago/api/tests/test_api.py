@@ -1,12 +1,13 @@
-from ..entities.event import EventType as Type
-from ..entities.location import Location
-from ..kudago_client import KudagoClient
 import pytest
+
+from kudago.api.entities.event import EventType
+from kudago.api.entities.location import Location
+from kudago.api.kudago_client import KudagoClient
 
 
 @pytest.fixture(scope='session')
 def kudago_client():
-    categories = ','.join([Type.concert.name, Type.business_events.name, Type.stand_up.name, Type.speed_dating.name])
+    categories = ','.join([EventType.concert.name, EventType.business_events.name, EventType.stand_up.name, EventType.speed_dating.name])
     client = KudagoClient(location=Location.spb.value, categories=categories)
     yield client
 

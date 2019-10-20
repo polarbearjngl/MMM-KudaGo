@@ -1,9 +1,7 @@
 from json import JSONDecodeError
-
 from requests import HTTPError
-
-from ..entities.place import Place
-from ..methods.base_api import BaseApi
+from kudago.api.entities.place import Place
+from kudago.api.methods.base_api import BaseApi
 
 
 class Places(BaseApi):

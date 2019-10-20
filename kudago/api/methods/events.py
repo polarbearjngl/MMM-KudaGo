@@ -1,8 +1,8 @@
 from json import JSONDecodeError
 from requests import HTTPError
-from ..entities.event import Event
-from ..methods.base_api import BaseApi
 from datetime import timezone, datetime, timedelta
+from kudago.api.entities.event import Event
+from kudago.api.methods.base_api import BaseApi
 
 
 class Events(BaseApi):

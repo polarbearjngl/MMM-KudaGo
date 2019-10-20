@@ -1,6 +1,6 @@
 import enum
 from datetime import datetime
-from ..entities.base_entity import KudagoBase
+from kudago.api.entities.base_entity import KudagoBase
 
 
 class Event(KudagoBase):

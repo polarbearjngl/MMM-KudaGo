@@ -1,5 +1,5 @@
 import argparse
-from .api.kudago_client import KudagoClient
+from kudago.api.kudago_client import KudagoClient
 
 parser = argparse.ArgumentParser()
 

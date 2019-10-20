@@ -1,8 +1,8 @@
 import json
 import os
-from .methods.events import Events
-from .methods.places import Places
-from .entities.event import EventType
+from kudago.api.entities.event import EventType
+from kudago.api.methods.events import Events
+from kudago.api.methods.places import Places
 
 
 class Singleton(type):
