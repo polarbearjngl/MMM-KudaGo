@@ -8,10 +8,8 @@ module.exports = NodeHelper.create({
     if (notification === "START") {
       this.config = payload;
       this.kudagoGetData();
-      this.readData();
       setInterval(() => {
         this.kudagoGetData();
-        this.readData();
       }, this.config.updateInterval);
     }
   },
@@ -40,5 +38,6 @@ module.exports = NodeHelper.create({
     pyshell.PythonShell.run('KudaGo.py', options, function (err) {
       if (err) throw err;
     });
+    this.readData();
   },
 });
