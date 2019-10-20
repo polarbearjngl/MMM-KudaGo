@@ -37,5 +37,3 @@ def test_client_collect_target_days_greater_null(kudago_client):
 def test_client_collect_target_days_less_null(kudago_client):
     business_events = kudago_client.business_events.get_events(target_days=-1)
     assert len(business_events) == 0
-    assert len(business_events) == 0
-    assert len(business_events) == 0

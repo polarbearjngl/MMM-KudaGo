@@ -1,10 +1,10 @@
 Module.register("MMM-KudaGo", {
     defaults: {
-        location: "spb",
-        categories: "concert",
-        days: 7,
-        nextEventInterval: 10000,  //interval for changing current text every 10 sec
-        updateInterval: 6 * 3600 * 1000, //writes and reads the file every 6 hours
+        location: "spb",  // city for collecting events
+        categories: "concert",  // types of events, separated by comma, that will requested from KudaGo Api
+        days: 7,  // number of days, for creating interval (since today until target day)
+        nextEventInterval: 10000,  // interval for changing current text every 10 sec
+        updateInterval: 6 * 3600 * 1000, // writes and reads the file every 6 hours
         animationSpeed: 2.5 * 1000,  // speed of text fading and changing in 2.5 sec
         pythonPath: 'python3'  // shell command or path to Python 3.6 (or higher) binary
     },
