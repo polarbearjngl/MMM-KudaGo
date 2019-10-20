@@ -28,7 +28,7 @@ module.exports = NodeHelper.create({
     //call python script for collecting events from KudaGo api
     var options = {
       pythonPath: this.config.pythonPath,
-      scriptPath: './modules/MMM-KudaGo/kudago',
+      scriptPath: './modules/MMM-KudaGo',
       mode: 'json',
       args: [
         "--location", this.config.location,
@@ -37,7 +37,7 @@ module.exports = NodeHelper.create({
       ]
     };
 
-    pyshell.PythonShell.run('kudago.py', options, function (err) {
+    pyshell.PythonShell.run('KudaGo.py', options, function (err) {
       if (err) throw err;
     });
   },
