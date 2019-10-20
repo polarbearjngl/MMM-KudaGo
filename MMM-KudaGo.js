@@ -3,10 +3,10 @@ Module.register("MMM-KudaGo", {
         location: "spb",
         categories: "concert",
         days: 7,
-        nextEventInterval: 10000,  //interval for changing current text in 10 sec
-        updateInterval: 12 * 3600 * 1000, //writes and reads the file every 12 hours
-        animationSpeed: 2.5 * 1000,  // speed of text fading and changing for 2.5 sec
-        pythonPath: 'python3'
+        nextEventInterval: 10000,  //interval for changing current text every 10 sec
+        updateInterval: 6 * 3600 * 1000, //writes and reads the file every 6 hours
+        animationSpeed: 2.5 * 1000,  // speed of text fading and changing in 2.5 sec
+        pythonPath: 'python3'  // shell command or path to Python 3.6 (or higher) binary
     },
 
     start: function () {

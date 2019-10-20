@@ -1,5 +1,7 @@
 import json
 import os
+from pathlib import Path
+
 from kudago.api.entities.event import EventType
 from kudago.api.methods.events import Events
 from kudago.api.methods.places import Places
@@ -63,6 +65,6 @@ class KudagoClient(metaclass=Singleton):
         """
         if self.events_info:
             events = sorted(self.events_info, key=lambda c: c.date)
-            directory = os.path.dirname(os.path.abspath(__file__)) + os.sep
+            directory = str(Path(__file__).parent.parent.absolute()) + os.sep
             with open(directory + filename, 'w', encoding='utf-8') as f:
                 json.dump([c.to_dict() for c in events], f, ensure_ascii=False, indent=4)
