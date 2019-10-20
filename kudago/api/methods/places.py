@@ -2,8 +2,8 @@ from json import JSONDecodeError
 
 from requests import HTTPError
 
-from api.entities.place import Place
-from api.methods.base_api import BaseApi
+from ..entities.place import Place
+from ..methods.base_api import BaseApi
 
 
 class Places(BaseApi):

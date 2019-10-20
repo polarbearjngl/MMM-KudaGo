@@ -1,8 +1,8 @@
 import json
 import os
-from api.methods.events import Events
-from api.methods.places import Places
-from api.entities.event import EventType
+from .methods.events import Events
+from .methods.places import Places
+from .entities.event import EventType
 
 
 class Singleton(type):

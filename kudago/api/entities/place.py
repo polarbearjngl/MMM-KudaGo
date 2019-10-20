@@ -1,4 +1,4 @@
-from api.entities.base_entity import KudagoBase
+from ..entities.base_entity import KudagoBase
 
 
 class Place(KudagoBase):

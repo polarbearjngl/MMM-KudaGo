@@ -1,7 +1,7 @@
 from json import JSONDecodeError
 from requests import HTTPError
-from api.entities.event import Event
-from api.methods.base_api import BaseApi
+from ..entities.event import Event
+from ..methods.base_api import BaseApi
 from datetime import timezone, datetime, timedelta
 
 
