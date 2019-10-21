@@ -29,6 +29,11 @@ Navigate to the new MMM-KudaGo folder and install the npm **python-shell** depen
 npm install python-shell
 ```
 
+Check that you have installed **Python 3.6 or higher** on your Raspberry. Just write in console `python3`, and if it exists, you will see python terminal. If not, you need to install it with this line
+```markdown
+sudo apt-get install python3
+```
+
 ### Configuration
 Here is example of config, that must be placed in *config.js* file in array *modules*
 ```markdown
