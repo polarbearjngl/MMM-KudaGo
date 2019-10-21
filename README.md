@@ -1,37 +1,55 @@
-## Welcome to GitHub Pages
+## MMM-KudaGo
 
-You can use the [editor on GitHub](https://github.com/polarbearjngl/MMM-KudaGo/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Module for [MagicMirror](https://github.com/MichMich/MagicMirror). Can show upcoming events (concerts, theater plays, exhibitions and etc.), that collected from [KudaGo](https://kudago.com). 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Actual for only **Russian Federation** and **Ukraine**, because of limitations in information, provided by service. Below, in config description, is the list of available locations.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Dependencies
+* [MagicMirror](https://github.com/MichMich/MagicMirror)
+* [python-shell](https://www.npmjs.com/package/python-shell)
+* Python 3.6 or higher
 
+### Installation
+Navigate into your MagicMirror's modules folder
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+cd ~/MagicMirror/modules
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Clone this module repository:
+```markdown
+git clone https://github.com/polarbearjngl/MMM-KudaGo.git
+```
 
-### Jekyll Themes
+Navigate to the new MMM-KudaGo folder and install the npm **python-shell** dependency
+```markdown
+npm install python-shell
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/polarbearjngl/MMM-KudaGo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Configuration
+Here is example of config, that must be placed in *config.js* file in array *modules*
+```markdown
+{
+    module: 'MMM-KudaGo',               //module name
+    disabled: false,                    //false if you want turn on module
+    position: 'bottom_bar',             //the best is bottom
+    config: {
+                location: "spb",        //city for searching events. String with only one value, without comma. More info in readme.md
+                categories: "concert",  //Types of events, separated by comma, that will requested from KudaGo
+                days: 7                 //Number of days, for creating interval for search (since today until target days)
+            }
+},
+```
 
-### Support or Contact
+### The following properties can be configured through config.js:
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+ Option | Type | Description
+-------|------|-----------
+`location` | String | City for searching events. Must be string with only one value, without comma. Possible values: <ul><li>St. Petersburg: `spb`,</li><li>Moscow: `msk`,</li><li>Novosibirsk: `nsk`,</li><li>Yekaterinburg: `ekb`,</li><li>Nizhny Novgorod: `nnv`,</li><li>Kazan: `kzn`,</li><li>Samara: `smr`,</li><li>Krasnodar: `krd`,</li><li>Sochi : `sochi`,</li><li>Ufa: `ufa`,</li><li>Krasnoyarsk: `krasnoyarsk`,</li><li>Kiev: `kev`</li></ul>
+`categories` | String | Types of events, one word or separated by comma, that will requested from KudaGo. For example: <ul><li>concert</li><li>theater</li><li>exhibition</li><li>festival</li><li>stand-up</li></ul> Default is `concert`. All possible types of events see on [This Page](https://github.com/polarbearjngl/MMM-KudaGo/blob/b148f9b4de9ffb1098ac83b2788089c7802165d2/kudago/api/entities/event.py#L61)
+`days` | Int | Number of days, for creating interval for search (since today until target days).
+`nextEventInterval` | Int | Interval for changing current text. Defaults is 10 sec (`10000 ms`).
+`updateInterval` | Int | Interval for writes and reads the file. Defaults is every 6 hours (`6 * 3600 * 1000`).
+`animationSpeed` | Float | Speed of text fading and changing to next. Defaults is 2.5 sec (`2.5 * 1000`).
+`pythonPath` | String | Shell comand or path to Python binary. Default is `python3`.
+
