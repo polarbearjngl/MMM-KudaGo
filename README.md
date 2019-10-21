@@ -4,6 +4,9 @@ Module for [MagicMirror](https://github.com/MichMich/MagicMirror). Can show upco
 
 Actual for only **Russian Federation** and **Ukraine**, because of limitations in information, provided by service. Below, in config description, is the list of available locations.
 
+## Screenshot
+![Screenshot](screenshot.jpg)
+
 
 ### Dependencies
 * [MagicMirror](https://github.com/MichMich/MagicMirror)
