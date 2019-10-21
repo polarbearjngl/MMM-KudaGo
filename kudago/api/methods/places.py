@@ -5,6 +5,7 @@ from kudago.api.methods.base_api import BaseApi
 
 
 class Places(BaseApi):
+    """Object for collecting event's place."""
 
     PLACES = '/places/%s'
     FIELDS = 'id,title'
@@ -15,13 +16,13 @@ class Places(BaseApi):
         self.url = self.API_URL + self.VER_1_4 + self.PLACES
 
     def get_place(self, place_info):
-        """Получить информацию о месте проведения события.
+        """Get information about event's place.
 
         Args:
-            place_info: идентификатор
+            place_info: Data from API.
 
         Returns:
-            Название места проведения события.
+            Name of event's place..
 
         """
         if place_info is not None:
@@ -37,15 +38,14 @@ class Places(BaseApi):
         else:
             return ''
 
-    def _get_place(self,
-                   place_id):
-        """Отправка запроса на получение информации о месте проведения события.
+    def _get_place(self, place_id):
+        """Send request about event's place.
 
         Args:
-            place_id: идентификатор
+            place_id: Identifier.
 
         Returns:
-            Информация о месте проведения события.
+            Information about event's place.
 
         """
         params = {
