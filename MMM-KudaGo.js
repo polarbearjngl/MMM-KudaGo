@@ -2,6 +2,7 @@ Module.register("MMM-KudaGo", {
     defaults: {
         location: "spb",  // city for collecting events
         categories: "concert",  // types of events, separated by comma, that will requested from KudaGo Api
+        tags: "",
         days: 7,  // number of days, for creating interval (since today until target day)
         nextEventInterval: 10000,  // interval for changing current text every 10 sec
         updateInterval: 6 * 3600 * 1000, // writes and reads the file every 6 hours

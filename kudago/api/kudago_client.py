@@ -22,14 +22,16 @@ class KudagoClient(metaclass=Singleton):
     DATE_FORMAT = '%d.%m.%y %H:%M'
     DATE_FORMAT_SHORT = '%d.%m.%y'
 
-    def __init__(self, location, categories):
+    def __init__(self, location, categories, tags):
         """Init object.
 
         Args:
             location: City for collecting events (see content of class Location)
             categories: Categories for classifying events (see content of class EventType).
+            tags: Tags for events, separated by comma, for much more relevant search.
         """
         self.places = Places(client=self)
+        self.tags = tags.split(',') if tags else []
         self.categories = []
         self.places_info = []
         self.events_info = []

@@ -32,7 +32,8 @@ module.exports = NodeHelper.create({
       args: [
         "--location", this.config.location,
         "--days", this.config.days,
-        "--categories", this.config.categories
+        "--categories", this.config.categories,
+        "--tags", this.config.tags,
       ]
     };
 

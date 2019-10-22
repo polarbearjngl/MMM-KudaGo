@@ -27,6 +27,7 @@ class Event(KudagoBase):
         self.client = client
         self.id = kwargs.get('id')
         self.title = kwargs.get('title')
+        self.tags = kwargs.get('tags')
         self.is_free = kwargs.get('is_free')
         self.price = 'Бесплатно' if self.is_free and not kwargs.get('price') else kwargs.get('price')
         self.location = kwargs.get('location').get('slug')
@@ -50,9 +51,9 @@ class Event(KudagoBase):
             Converted date.
         """
         ftimestamp = datetime.fromtimestamp
-        event_date = ','.join([(ftimestamp(date['start']).strftime(self.client.DATE_FORMAT)) for date in dates
-                               if since < date['start'] <= until])
-        return event_date if event_date else ftimestamp(since).strftime(self.client.DATE_FORMAT_SHORT)
+        event_date = [(ftimestamp(date['start']).strftime(self.client.DATE_FORMAT)) for date in dates
+                      if since < date['start'] <= until]
+        return event_date[0] if event_date else ftimestamp(since).strftime(self.client.DATE_FORMAT_SHORT)
 
     def __str__(self):
         return '\n'.join([self.title, self.date, self.place, self.price])

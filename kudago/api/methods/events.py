@@ -10,7 +10,7 @@ class Events(BaseApi):
 
     EVENTS = '/events'
     PAGE_SIZE = 100
-    FIELDS = 'id,title,dates,place,location,price,categories,is_free'
+    FIELDS = 'id,title,dates,place,location,price,categories,is_free,tags'
 
     def __init__(self,
                  client,
@@ -69,6 +69,10 @@ class Events(BaseApi):
         if not isinstance(events, (HTTPError, JSONDecodeError)):
             return [Event(client=self.client, since=since, until=until, **info)
                     for info in self.collected_events
-                    if info['id'] not in self.client.events_info_ids]
+                    if info['id'] not in self.client.events_info_ids
+                    and self.is_in_tags(info['tags'])]
         else:
             return []
+
+    def is_in_tags(self, tags):
+        return any([tag in self.client.tags for tag in tags]) if self.client.tags else True

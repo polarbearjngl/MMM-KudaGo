@@ -9,6 +9,8 @@ parser.add_argument('-d', '--days', default=None, type=int, required=True,
                     help="Number of days")
 parser.add_argument('-c', '--categories', default=None, type=str, required=True,
                     help="Types of events, separated by comma, that will requested from KudaGo Api")
+parser.add_argument('-t', '--tags', default='', type=str,
+                    help="Tags for events, separated by comma, for much more relevant search")
 parser.add_argument('-f', '--file', default='events.json', type=str,
                     help="Name of file for saving data")
 
@@ -17,7 +19,7 @@ args = parser.parse_args()
 
 def main():
     try:
-        client = KudagoClient(location=args.location, categories=args.categories)
+        client = KudagoClient(location=args.location, categories=args.categories, tags=args.tags)
         client.collect_events(target_days=args.days)
         client.write_events_to_file(filename=args.file)
     except (KeyboardInterrupt, SystemExit):
