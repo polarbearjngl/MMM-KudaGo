@@ -65,8 +65,9 @@ class KudagoClient(metaclass=Singleton):
         Args:
             filename: Name of result file.
         """
+        directory = str(Path(__file__).parent.parent.absolute()) + os.sep
+        open(directory + filename, 'w', encoding='utf-8').close()
         if self.events_info:
             events = sorted(self.events_info, key=lambda c: c.date)
-            directory = str(Path(__file__).parent.parent.absolute()) + os.sep
             with open(directory + filename, 'w', encoding='utf-8') as f:
                 json.dump([c.to_dict() for c in events], f, ensure_ascii=False, indent=4)
