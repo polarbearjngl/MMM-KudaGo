@@ -61,12 +61,15 @@ class Events(BaseApi):
         events = self._request(method='GET',
                                url=self.url if url is None else url,
                                params=params)
-        self.collected_events.extend(events['results'])
-        if events['next']:
-            self.get_events(target_days=target_days,
-                            page_size=page_size,
-                            url=events['next'])
+
         if not isinstance(events, (HTTPError, JSONDecodeError)):
+            self.collected_events.extend(events['results'])
+
+            if events['next']:
+                self.get_events(target_days=target_days,
+                                page_size=page_size,
+                                url=events['next'])
+
             return [Event(client=self.client, since=since, until=until, **info)
                     for info in self.collected_events
                     if info['id'] not in self.client.events_info_ids
