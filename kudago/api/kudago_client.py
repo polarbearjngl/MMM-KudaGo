@@ -23,7 +23,7 @@ class KudagoClient(metaclass=Singleton):
     DATE_FORMAT = '%d.%m.%y %H:%M'
     DATE_FORMAT_SHORT = '%d.%m.%y'
 
-    def __init__(self, location, categories, tags, create_qr_img=False):
+    def __init__(self, location, categories, tags, create_qr_img=None):
         """Init object.
 
         Args:
