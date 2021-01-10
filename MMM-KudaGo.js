@@ -4,6 +4,7 @@ Module.register("MMM-KudaGo", {
         categories: "concert",  // types of events, separated by comma, that will requested from KudaGo Api
         tags: "",
         days: 7,  // number of days, for creating interval (since today until target day)
+        showQrCode: false, // generate and show qr code image
         nextEventInterval: 10000,  // interval for changing current text every 10 sec
         updateInterval: 6 * 3600 * 1000, // writes and reads the file every 6 hours
         animationSpeed: 2.5 * 1000,  // speed of text fading and changing in 2.5 sec
@@ -35,7 +36,7 @@ Module.register("MMM-KudaGo", {
         if (notification === "DATA") {
             this.dataFile = JSON.parse(payload);
             var eventsItems = [];
-            
+
             for (var i in this.dataFile) {
                 var item = this.dataFile[i];
                 eventsItems.push(item);
@@ -59,8 +60,17 @@ Module.register("MMM-KudaGo", {
         }
 
         var wrapper = document.createElement("div");
-
+        const tableEl = document.createElement('table');
         if (this.eventsItems.length > 0) {
+            if (this.config.showQrCode){
+                const rowQRCode = document.createElement('tr');
+                const qrEl = document.createElement('td');
+                qrEl.align = 'center';
+                qrEl.className = "dimm small regular";
+                var img = document.createTextNode(this.eventsItems[this.activeItem].qr_img_path);
+                qrEl.appendChild(img)
+                tableEl.appendChild(rowQRCode);
+            }
             // header row for event place
             const rowOne = document.createElement('tr');
             const placeEl = document.createElement('td');
@@ -86,7 +96,6 @@ Module.register("MMM-KudaGo", {
             rowTwo.appendChild(dateEl);
             rowTwo.appendChild(priceEl);
 
-            const tableEl = document.createElement('table');
             tableEl.appendChild(rowOne);
             tableEl.appendChild(rowTwo);
             wrapper.appendChild(tableEl);

@@ -8,7 +8,7 @@ from kudago.api.kudago_client import KudagoClient
 @pytest.fixture(scope='session')
 def kudago_client():
     categories = ','.join([EventType.concert.name, EventType.business_events.name, EventType.stand_up.name, EventType.speed_dating.name])
-    client = KudagoClient(location=Location.spb.value, categories=categories, tags='')
+    client = KudagoClient(location=Location.spb.value, categories=categories, tags='', create_qr_img=True)
     yield client
 
 
@@ -41,5 +41,5 @@ def test_client_collect_target_days_less_null(kudago_client):
 
 def test_client_write_events_to_file(kudago_client):
     if not kudago_client.events_info:
-        kudago_client.collect_events(target_days=1)
+        kudago_client.collect_events(target_days=7)
     kudago_client.write_events_to_file(filename='events.json')

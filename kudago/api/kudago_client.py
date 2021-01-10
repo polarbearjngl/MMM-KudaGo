@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 from pathlib import Path
 
 from kudago.api.entities.event import EventType
@@ -22,7 +23,7 @@ class KudagoClient(metaclass=Singleton):
     DATE_FORMAT = '%d.%m.%y %H:%M'
     DATE_FORMAT_SHORT = '%d.%m.%y'
 
-    def __init__(self, location, categories, tags):
+    def __init__(self, location, categories, tags, create_qr_img=False):
         """Init object.
 
         Args:
@@ -36,6 +37,7 @@ class KudagoClient(metaclass=Singleton):
         self.places_info = []
         self.events_info = []
         self.events_info_ids = []
+        self.create_qr_img = create_qr_img
         categories = categories if isinstance(categories, list) else categories.split(',')
         for cat_name in categories:
             category = getattr(EventType, cat_name, None)
@@ -52,6 +54,10 @@ class KudagoClient(metaclass=Singleton):
         Returns:
             Collected events.
         """
+        if self.create_qr_img:
+            directory = str(Path(__file__).parent.parent.absolute()) + os.sep + "QR_img" + os.sep
+            if os.path.exists(directory):
+                shutil.rmtree(directory)
         for category in self.categories:
             events_obj = getattr(self, category, None)
             if events_obj is not None:

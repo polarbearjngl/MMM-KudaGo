@@ -10,7 +10,7 @@ class Events(BaseApi):
 
     EVENTS = '/events'
     PAGE_SIZE = 100
-    FIELDS = 'id,title,dates,place,location,price,categories,is_free,tags'
+    FIELDS = 'id,title,dates,place,location,price,categories,is_free,tags,site_url'
 
     def __init__(self,
                  client,

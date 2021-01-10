@@ -1,5 +1,9 @@
 import enum
+import os
 from datetime import datetime
+from pathlib import Path
+import qrcode
+
 from kudago.api.entities.base_entity import KudagoBase
 
 
@@ -34,10 +38,13 @@ class Event(KudagoBase):
         self.categories = ','.join(kwargs.get('categories'))
         self.date = self.convert_dates(kwargs.get('dates'), since=since, until=until)
         self.place = client.places.get_place(place_info=kwargs.get('place'))
+        self.site_url = kwargs.get('site_url')
+        self.qr_img_path = None
 
         self._id_attrs = (self.id, )
         self.client.events_info.append(self)
         self.client.events_info_ids.append(self.id)
+        self.create_qr_image()
 
     def convert_dates(self, dates, since, until):
         """Converts date for event from timestamp in given format.
@@ -54,6 +61,17 @@ class Event(KudagoBase):
         event_date = [(ftimestamp(date['start']).strftime(self.client.DATE_FORMAT)) for date in dates
                       if since < date['start'] <= until]
         return event_date[0] if event_date else ftimestamp(since).strftime(self.client.DATE_FORMAT_SHORT)
+
+    def create_qr_image(self):
+        if self.client.create_qr_img:
+            directory = str(Path(__file__).parent.parent.absolute()) + os.sep + "QR_img" + os.sep
+            qr = qrcode.QRCode(box_size=2, border=3)
+            qr.add_data(self.site_url)
+            qr.make()
+            img = qr.make_image(fill_color="black", back_color="white")
+            Path(directory).mkdir(parents=True, exist_ok=True)
+            img.save(directory + str(self.id))
+            self.qr_img_path = directory + str(self.id)
 
     def __str__(self):
         return '\n'.join([self.title, self.date, self.place, self.price])

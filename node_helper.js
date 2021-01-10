@@ -34,6 +34,7 @@ module.exports = NodeHelper.create({
         "--days", this.config.days,
         "--categories", this.config.categories,
         "--tags", this.config.tags,
+        "--qrcode", this.config.showQrCode
       ]
     };
 
