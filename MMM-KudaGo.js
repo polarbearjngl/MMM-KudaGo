@@ -67,7 +67,9 @@ Module.register("MMM-KudaGo", {
                 const qrEl = document.createElement('td');
                 qrEl.align = 'center';
                 qrEl.className = "dimm small regular";
-                var img = document.createTextNode(this.eventsItems[this.activeItem].qr_img_path);
+                var img = document.createElement("img");
+                img.src = this.eventsItems[this.activeItem].qr_img_path;
+
                 qrEl.appendChild(img)
                 tableEl.appendChild(rowQRCode);
             }
