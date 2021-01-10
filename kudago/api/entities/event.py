@@ -64,14 +64,14 @@ class Event(KudagoBase):
 
     def create_qr_image(self):
         if self.client.create_qr_img:
-            directory = str(Path(__file__).parent.parent.absolute()) + os.sep + "QR_img" + os.sep
+            directory = str(Path(__file__).parent.parent.parent.absolute()) + os.sep + "QR_img" + os.sep
             qr = qrcode.QRCode(box_size=2, border=3)
             qr.add_data(self.site_url)
             qr.make()
             img = qr.make_image(fill_color="black", back_color="white")
             Path(directory).mkdir(parents=True, exist_ok=True)
-            img.save(directory + str(self.id))
-            self.qr_img_path = directory + str(self.id)
+            img.save(directory + str(self.id) + ".png")
+            self.qr_img_path = directory + str(self.id) + ".png"
 
     def __str__(self):
         return '\n'.join([self.title, self.date, self.place, self.price])
