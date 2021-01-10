@@ -62,12 +62,7 @@ Module.register("MMM-KudaGo", {
         var wrapper = document.createElement("div");
         const tableEl = document.createElement('table');
         if (this.eventsItems.length > 0) {
-            if (this.config.showQrCode == 1){
-                const rowQRCode = document.createElement('tr');
-                const qrEl = document.createElement('td');
-                qrEl.align = 'center';
-                qrEl.className = "dimm small regular";
-
+            if (this.config.showQrCode == 1){;
                 source = this.eventsItems[this.activeItem].qr_img_path;
 		        if (source) {
 		        	var img = document.createElement("img");
@@ -76,11 +71,7 @@ Module.register("MMM-KudaGo", {
 		        	img.style.maxWidth = "100%";
 		        	img.style.maxHeight = "100%";
                     img.style.opacity = 0.9;
-                    var img_wrapper = document.createElement("div");
-                    img_wrapper.appendChild(img);
-
-                    qrEl.appendChild(img_wrapper)
-                    tableEl.appendChild(rowQRCode);
+                    wrapper.appendChild(img);
 		        }
             }
             // header row for event place
