@@ -66,11 +66,10 @@ Module.register("MMM-KudaGo", {
                 source = this.eventsItems[this.activeItem].qr_img_path;
 		        if (source) {
 		        	var img = document.createElement("img");
-		        	img.src = source;
-		        	img.id = "mmm-images-photos";
-		        	img.style.maxWidth = "100%";
-		        	img.style.maxHeight = "100%";
-                    img.style.opacity = 0.9;
+                    img.setAttribute('src', source);
+		        	//img.style.maxWidth = "100%";
+		        	//img.style.maxHeight = "100%";
+                    //img.style.opacity = 0.9;
                     wrapper.appendChild(img);
 		        }
             }

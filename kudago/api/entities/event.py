@@ -65,7 +65,7 @@ class Event(KudagoBase):
     def create_qr_image(self):
         if self.client.create_qr_img:
             directory = str(Path(__file__).parent.parent.parent.absolute()) + os.sep + "QR_img" + os.sep
-            qr = qrcode.QRCode(box_size=2, border=3)
+            qr = qrcode.QRCode(box_size=20, border=3)
             qr.add_data(self.site_url)
             qr.make()
             img = qr.make_image(fill_color="black", back_color="white")

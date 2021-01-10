@@ -41,5 +41,5 @@ def test_client_collect_target_days_less_null(kudago_client):
 
 def test_client_write_events_to_file(kudago_client):
     if not kudago_client.events_info:
-        kudago_client.collect_events(target_days=7)
+        kudago_client.collect_events(target_days=1)
     kudago_client.write_events_to_file(filename='events.json')
