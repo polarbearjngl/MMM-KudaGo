@@ -67,11 +67,21 @@ Module.register("MMM-KudaGo", {
                 const qrEl = document.createElement('td');
                 qrEl.align = 'center';
                 qrEl.className = "dimm small regular";
-                var img = document.createElement("img");
-                img.src = this.eventsItems[this.activeItem].qr_img_path;
 
-                qrEl.appendChild(img)
-                tableEl.appendChild(rowQRCode);
+                source = this.eventsItems[this.activeItem].qr_img_path;
+		        if (source) {
+		        	var img = document.createElement("img");
+		        	img.src = source;
+		        	img.id = "mmm-images-photos";
+		        	img.style.maxWidth = "100%";
+		        	img.style.maxHeight = "100%";
+                    img.style.opacity = 0.9;
+                    var img_wrapper = document.createElement("div");
+                    img_wrapper.appendChild(img);
+
+                    qrEl.appendChild(img_wrapper)
+                    tableEl.appendChild(rowQRCode);
+		        }
             }
             // header row for event place
             const rowOne = document.createElement('tr');
