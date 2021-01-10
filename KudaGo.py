@@ -13,7 +13,7 @@ parser.add_argument('-t', '--tags', default='', type=str,
                     help="Tags for events, separated by comma, for much more relevant search")
 parser.add_argument('-f', '--file', default='events.json', type=str,
                     help="Name of file for saving data")
-parser.add_argument('-qr', '--qrcode', default="", type=str,
+parser.add_argument('-qr', '--qrcode', default=0, type=int,
                     help="Enable qr codes generation")
 
 args = parser.parse_args()
